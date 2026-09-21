@@ -1,0 +1,36 @@
+{
+    "name": "express",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/server.js",
+        "dev": "nodemon --watch src --exec tsx src/server.ts"
+    },
+    "dependencies": {
+        "bcryptjs": "^3.0.3",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "dotenv": "^17.4.2",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "jade": "~1.11.0",
+        "jsonwebtoken": "^9.0.3",
+        "morgan": "~1.9.1",
+        "mysql2": "^3.22.5",
+        "sequelize": "^6.37.8"
+    },
+    "devDependencies": {
+        "@types/bcryptjs": "^2.4.6",
+        "@types/cookie-parser": "^1.4.10",
+        "@types/dotenv": "^6.1.1",
+        "@types/express": "^5.0.6",
+        "@types/http-errors": "^2.0.5",
+        "@types/jsonwebtoken": "^9.0.10",
+        "@types/morgan": "^1.9.10",
+        "@types/node": "^26.6.2",
+        "nodemon": "^3.1.14",
+        "tsx": "^4.23.15",
+        "typescript": "^7.0.2"
+    }
+}

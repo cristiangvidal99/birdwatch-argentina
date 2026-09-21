@@ -58,6 +58,30 @@ Este proyecto está bajo la **MIT License**.
 
 La licencia MIT aplica al código desarrollado para este proyecto. Los datos, imágenes y demás contenidos obtenidos mediante APIs o fuentes externas pueden estar sujetos a sus propias licencias y términos de uso.
 
+### 🐳 Desarrollo local con Docker
+
+Desde `birdwatch-argentina-backend`:
+
+```bash
+docker compose up --build
+```
+
+La API estará disponible en `http://localhost:3000` y MySQL en `localhost:3306`. La base de datos se conserva en el volumen `mysql_data` y se inicializa con `src/db/schema.sql` en el primer arranque.
+
+Para detener los servicios:
+
+```bash
+docker compose down
+```
+
+Para eliminar también los datos locales:
+
+```bash
+docker compose down -v
+```
+
+Las credenciales y puertos se pueden configurar mediante un archivo `.env` dentro de `birdwatch-argentina-backend`, usando `.env.example` como referencia.
+
 ---
 
 ## 🇬🇧 English

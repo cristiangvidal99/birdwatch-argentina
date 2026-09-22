@@ -10,8 +10,6 @@ Plataforma web para explorar y visualizar información sobre **aves y biodiversi
 
 El proyecto busca crear una herramienta interactiva para descubrir especies, consultar información sobre su distribución y, progresivamente, incorporar observaciones y estadísticas relacionadas con la biodiversidad argentina.
 
-El proyecto también funciona como una aplicación práctica para desarrollar y demostrar conocimientos de **desarrollo Full Stack**, integración de APIs externas, bases de datos y visualización de información.
-
 ### 🛠️ Tecnologías
 
 #### Frontend

@@ -5,9 +5,9 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-toor}
-      MYSQL_DATABASE: ${DB_NAME:-express_db}
+      MYSQL_DATABASE: ${DB_NAME:-birdwatch-argentina-db}
     ports:
-      - "${DB_PORT:-3306}:3306"
+      - "${DB_PORT:-3307}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./src/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
@@ -30,7 +30,7 @@ services:
       DB_PORT: 3306
       DB_USER: root
       DB_PASSWORD: ${DB_PASSWORD:-toor}
-      DB_NAME: ${DB_NAME:-express_db}
+      DB_NAME: ${DB_NAME:-birdwatch-argentina-db}
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1d}
     ports:

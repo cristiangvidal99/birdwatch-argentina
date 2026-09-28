@@ -1,121 +1,109 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+const ANIMALS = ['Águila', 'Cóndor', 'Colibrí', 'Guanaco', 'Zorro']
+const LOCATIONS = ['Precordillera', 'Patagonia', 'Selva', 'Monte', 'Delta']
+
+function getRandomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalData, setModalData] = useState({ name: '', location: '' })
+
+  const openModal = () => {
+    setModalData({
+      name: getRandomItem(ANIMALS),
+      location: getRandomItem(LOCATIONS)
+    })
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setTimeout(() => setModalData({ name: '', location: '' }), 300)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      {/* Contenido principal */}
+      <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full text-center">
+        <h1 className="text-2xl font-bold mb-6 text-blue-600">
+          BirdWatch Argentina 🐦
+        </h1>
+
+        {/* Botón para abrir el modal */}
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={openModal}
+          className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-6 rounded-full transition-all duration-200"
         >
-          Count is {count}
+          📊 Ver dato aleatorio (Modal)
         </button>
-      </section>
 
-      <div className="ticks"></div>
+        <p className="text-gray-500 mt-4">
+          Haz clic en el botón para ver un ejemplo de modal.
+        </p>
+      </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      {/* Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          {/* Contenido del modal */}
+          <div 
+            className={`bg-white rounded-xl shadow-2xl p-6 max-w-sm w-full transform transition-all duration-300 ease-out ${
+              isModalOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Botón de cerrar */}
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 focus:outline-none"
+            >
+              ✕
+            </button>
+
+            {/* Contenido del modal */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                🐦
+              </div>
+
+              <h2 className="text-xl font-bold text-gray-800 mb-2">
+                {modalData.name}
+              </h2>
+
+              <p className="text-gray-600 mb-6">
+                Ubicación: <span className="font-semibold text-indigo-600">{modalData.location}</span>
+              </p>
+
+              {/* Información adicional simulada */}
+              <div className="bg-gray-50 rounded-lg p-4 text-left">
+                <h3 className="text-sm font-semibold text-gray-700 mb-2 border-b pb-1">
+                  Datos adicionales:
+                </h3>
+                <ul className="text-xs text-gray-500 space-y-1">
+                  <li>• Estado de conservación: Preocupación menor</li>
+                  <li>• Hábitat típico: Zona templada</li>
+                  <li>• Alimentación: Insectos y semillas</li>
+                </ul>
+              </div>
+
+              {/* Botón de cerrar */}
+              <button
+                onClick={closeModal}
+                className="mt-6 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 rounded-lg transition-colors"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      )}
+    </div>
   )
 }
 
